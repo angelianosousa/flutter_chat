@@ -17,6 +17,10 @@ class AuthData {
     return _authMode == AuthMode.SignUp;
   }
 
+  bool get hasAvatar {
+    return avatar != null;
+  }
+
   void toggleAuthMode() {
     _authMode = isSignin ? AuthMode.SignUp : AuthMode.SignIn;
   }

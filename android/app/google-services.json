@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "41628199500",
+    "project_id": "my-chat-eccc4",
+    "storage_bucket": "my-chat-eccc4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:41628199500:android:e9cef8e6d942dd7b1ca2e9",
+        "android_client_info": {
+          "package_name": "br.com.mychat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlS4wwRHoRU_BX64-rhQUoRZSWrpOo1aU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

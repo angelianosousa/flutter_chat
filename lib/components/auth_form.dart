@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:my_chat/models/auth_data.dart';
+import 'package:my_chat/components/user_image.dart';
+import 'package:my_chat/core/models/auth_data.dart';
 
 class AuthForm extends StatefulWidget {
   final void Function(AuthData) onSubmit;
@@ -14,10 +17,24 @@ class _AuthFormState extends State<AuthForm> {
   final _formKey = GlobalKey<FormState>();
   final _authData = AuthData();
 
+  void _handleImagePick(File image) {
+    _authData.avatar = image;
+  }
+
+  void _showError(String msg) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(msg), backgroundColor: Colors.red),
+    );
+  }
+
   void _submit() {
     final isValid = _formKey.currentState?.validate() ?? false;
 
     if (!isValid) return;
+
+    if (!_authData.hasAvatar && _authData.isSignup) {
+      return _showError('Selecione uma imagem');
+    }
 
     widget.onSubmit(_authData);
   }
@@ -32,6 +49,7 @@ class _AuthFormState extends State<AuthForm> {
           padding: const EdgeInsets.all(15.0),
           child: Column(
             children: [
+              if (_authData.isSignup) UserImage(onImagePick: _handleImagePick),
               if (_authData.isSignup)
                 TextFormField(
                   key: ValueKey('name'),
@@ -72,29 +90,13 @@ class _AuthFormState extends State<AuthForm> {
                 validator: (formPass) {
                   final password = formPass ?? '';
 
-                  if (password.trim().isEmpty || password.length > 6) {
+                  if (password.trim().isEmpty || password.length < 6) {
                     return 'Senha deve ter pelo menos 6 caracteres';
                   }
 
                   return null;
                 },
               ),
-              SizedBox(height: 10),
-              if (_authData.isSignup)
-                TextFormField(
-                  key: ValueKey('confirmPassword'),
-                  obscureText: true,
-                  decoration: InputDecoration(labelText: 'Confirmar senha'),
-                  validator: (formConfirmPass) {
-                    final confirmPass = formConfirmPass ?? '';
-
-                    if (confirmPass != _authData.password) {
-                      return 'As senhas estão diferentes';
-                    }
-
-                    return null;
-                  },
-                ),
               SizedBox(height: 15),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
