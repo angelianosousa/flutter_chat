@@ -1,20 +1,20 @@
 import 'dart:io';
 
-enum AuthMode { SignIn, SignUp }
+enum AuthMode { signIn, signUp }
 
 class AuthData {
   String name = '';
   String email = '';
   String password = '';
   File? avatar;
-  AuthMode _authMode = AuthMode.SignIn;
+  AuthMode _authMode = AuthMode.signIn;
 
   bool get isSignin {
-    return _authMode == AuthMode.SignIn;
+    return _authMode == AuthMode.signIn;
   }
 
   bool get isSignup {
-    return _authMode == AuthMode.SignUp;
+    return _authMode == AuthMode.signUp;
   }
 
   bool get hasAvatar {
@@ -22,6 +22,6 @@ class AuthData {
   }
 
   void toggleAuthMode() {
-    _authMode = isSignin ? AuthMode.SignUp : AuthMode.SignIn;
+    _authMode = isSignin ? AuthMode.signUp : AuthMode.signIn;
   }
 }

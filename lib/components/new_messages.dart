@@ -10,7 +10,6 @@ class NewMessages extends StatefulWidget {
 }
 
 class _NewMessagesState extends State<NewMessages> {
-  // String _message = '';
   final _messageController = TextEditingController();
 
   Future<void> _sendMessage() async {

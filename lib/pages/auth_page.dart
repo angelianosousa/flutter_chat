@@ -15,6 +15,8 @@ class _AuthPageState extends State<AuthPage> {
 
   Future<void> _handleSubmit(AuthData formData) async {
     try {
+      if (!mounted) return;
+
       setState(() => _isLoading = true);
       if (formData.isSignin) {
         await AuthService().signIn(formData.email, formData.password);
@@ -27,11 +29,12 @@ class _AuthPageState extends State<AuthPage> {
         );
       }
     } catch (error) {
+      print(error);
     } finally {
-      setState(() => _isLoading = false);
+      if (mounted) {
+        setState(() => _isLoading = false);
+      }
     }
-    // print('AuthPage...');
-    // print(formData.email);
   }
 
   @override
@@ -43,7 +46,7 @@ class _AuthPageState extends State<AuthPage> {
           Center(
             child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.all(40.0),
+                padding: const EdgeInsets.all(20.0),
                 child: AuthForm(onSubmit: _handleSubmit),
               ),
             ),

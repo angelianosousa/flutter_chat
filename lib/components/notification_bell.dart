@@ -19,7 +19,7 @@ class NotificationBell extends StatelessWidget {
           bottom: 10,
           width: 15,
           child: CircleAvatar(
-            backgroundColor: Colors.amber,
+            backgroundColor: Colors.orange.shade500,
             child: Text(
               '${Provider.of<ChatNotificationService>(context).itemsCount}',
               style: TextStyle(fontSize: 12, color: Colors.white),

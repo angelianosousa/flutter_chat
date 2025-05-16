@@ -14,7 +14,11 @@ class ChatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('My Chat'),
+        title: Row(children: [
+          Text('My Chat'),
+          SizedBox(width: 10),
+          Icon(Icons.chat_rounded),
+        ],),
         actions: [
           DropdownButtonHideUnderline(
             child: DropdownButton(
